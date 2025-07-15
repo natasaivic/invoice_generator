@@ -30,6 +30,9 @@ This project includes a pre-configured virtual environment in the `venv/` direct
 
 - **Activate Environment**: `source venv/bin/activate`
 - **Run Development Server**: `python app.py`
+- **Run Tests**: `pytest tests/ -v`
+- **Run Smoke Tests**: `pytest tests/ -m smoke -v`
+- **Generate Test Report**: `pytest tests/ --html=reports/report.html`
 - **Install New Dependencies**: `pip install <package> && pip freeze > requirements.txt`
 
 ## Configuration
@@ -83,10 +86,39 @@ JavaScript handles:
 - Live preview generation
 - PDF download via AJAX
 
+### Testing
+
+The project includes comprehensive Selenium-based end-to-end testing:
+
+#### Test Structure
+- **conftest.py**: Test fixtures with WebDriver setup and test data
+- **test_invoice_generation.py**: Complete test suite with 8 test scenarios
+- **pytest.ini**: Test configuration with HTML reporting
+
+#### Running Tests
+```bash
+# All tests
+pytest tests/ -v
+
+# Specific categories
+pytest tests/ -m ui -v          # UI tests
+pytest tests/ -m smoke -v       # Smoke tests
+pytest tests/ --html=reports/report.html  # With HTML report
+```
+
+#### Test Features
+- **Browser**: Chrome in headed mode for development observation
+- **Delays**: 3-second pauses between actions for enhanced visibility
+- **Coverage**: Page loading, form filling, calculations, preview, PDF generation
+- **Fixtures**: Consistent test data (`invoice_test_data`, `minimal_invoice_data`)
+- **PDF Verification**: Downloads and validates actual PDF files
+
 ### Development Workflow
 
 1. **Start Development Server**: `python app.py`
 2. **Access Application**: http://127.0.0.1:5000
-3. **Testing**: Fill out forms and generate test invoices
-4. **Styling Changes**: Edit `static/css/style.css`
-5. **Logic Changes**: Edit `app.py` for backend or `static/js/script.js` for frontend
+3. **Run Tests**: `pytest tests/ -v` for comprehensive validation
+4. **Testing**: Fill out forms and generate test invoices
+5. **Styling Changes**: Edit `static/css/style.css`
+6. **Logic Changes**: Edit `app.py` for backend or `static/js/script.js` for frontend
+7. **Test Changes**: Use `pytest tests/ -m smoke -v` for quick workflow validation

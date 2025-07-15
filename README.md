@@ -72,6 +72,7 @@ invoice_generator/
 ├── requirements.txt          # Python dependencies
 ├── .env                     # Environment configuration
 ├── .gitignore              # Git ignore rules
+├── pytest.ini              # Test configuration
 ├── templates/
 │   └── index.html          # Main application template
 ├── static/
@@ -79,15 +80,66 @@ invoice_generator/
 │   │   └── style.css       # Application styling
 │   └── js/
 │       └── script.js       # Frontend functionality
+├── tests/
+│   ├── conftest.py         # Test fixtures and configuration
+│   ├── test_invoice_generation.py  # Comprehensive test suite
+│   └── README.md           # Testing documentation
+├── reports/                 # Test reports directory
 ├── README.md               # This file
 └── CLAUDE.md              # Development guidance
 ```
 
+## Testing
+
+The project includes a comprehensive Selenium-based test suite with pytest:
+
+### Running Tests
+
+```bash
+# Activate environment
+source venv/bin/activate
+
+# Run all tests
+pytest tests/ -v
+
+# Run specific test categories
+pytest tests/ -m ui -v          # UI tests only
+pytest tests/ -m smoke -v       # Smoke tests only
+
+# Generate HTML test report
+pytest tests/ --html=reports/report.html --self-contained-html
+```
+
+### Test Coverage
+
+- **Page Loading & Validation**: Ensures all UI elements exist and function
+- **Form Filling**: Tests complete invoice form workflow
+- **Real-time Calculations**: Verifies dynamic total calculations
+- **Preview Functionality**: Tests live invoice preview
+- **PDF Generation**: Validates PDF creation and download
+- **End-to-End Workflow**: Complete smoke test from form to PDF
+
+### Test Features
+
+- **Headed Mode**: Visual test execution for development observation
+- **3-Second Delays**: Enhanced observability between key actions
+- **Consistent Fixtures**: Reliable test data for repeatable results
+- **Download Verification**: Actual PDF file creation validation
+- **CI-Ready**: Designed for future headless/CI environments
+
 ## Dependencies
 
 Key dependencies include:
+
+### Application
 - **Flask**: Web framework
 - **ReportLab**: PDF generation
 - **WeasyPrint**: Alternative PDF generation
 - **python-dotenv**: Environment variable management
 - **Jinja2**: Template engine (included with Flask)
+
+### Testing
+- **Selenium**: Browser automation for UI testing
+- **pytest**: Test framework and runner
+- **pytest-html**: HTML test reporting
+- **webdriver-manager**: Automatic WebDriver management
