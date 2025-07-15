@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Invoice Generator</h1>
+            <p>Create professional invoices in minutes</p>
+        </header>
+
+        <form id="invoiceForm" class="invoice-form">
+            <!-- Invoice Details -->
+            <section class="form-section">
+                <h2>Invoice Details</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="invoice_number">Invoice Number</label>
+                        <input type="text" id="invoice_number" name="invoice_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="due_date">Due Date</label>
+                        <input type="date" id="due_date" name="due_date" required>
+                    </div>
+                </div>
+            </section>
+
+            <!-- From Section -->
+            <section class="form-section">
+                <h2>From (Your Information)</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from_name">Name</label>
+                        <input type="text" id="from_name" name="from_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="from_company">Company</label>
+                        <input type="text" id="from_company" name="from_company">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from_address">Address</label>
+                        <input type="text" id="from_address" name="from_address">
+                    </div>
+                    <div class="form-group">
+                        <label for="from_city">City, State ZIP</label>
+                        <input type="text" id="from_city" name="from_city">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from_email">Email</label>
+                        <input type="email" id="from_email" name="from_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="from_phone">Phone</label>
+                        <input type="tel" id="from_phone" name="from_phone">
+                    </div>
+                </div>
+            </section>
+
+            <!-- To Section -->
+            <section class="form-section">
+                <h2>To (Client Information)</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="to_name">Name</label>
+                        <input type="text" id="to_name" name="to_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="to_company">Company</label>
+                        <input type="text" id="to_company" name="to_company">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="to_address">Address</label>
+                        <input type="text" id="to_address" name="to_address">
+                    </div>
+                    <div class="form-group">
+                        <label for="to_city">City, State ZIP</label>
+                        <input type="text" id="to_city" name="to_city">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="to_email">Email</label>
+                        <input type="email" id="to_email" name="to_email">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Items Section -->
+            <section class="form-section">
+                <h2>Items</h2>
+                <div class="items-container">
+                    <div class="items-header">
+                        <div>Description</div>
+                        <div>Quantity</div>
+                        <div>Rate</div>
+                        <div>Amount</div>
+                        <div>Action</div>
+                    </div>
+                    <div id="items-list">
+                        <!-- Items will be added dynamically -->
+                    </div>
+                    <button type="button" id="add-item" class="btn btn-secondary">Add Item</button>
+                </div>
+                <div class="total-section">
+                    <div class="total-row">
+                        <span>Total: $<span id="total-amount">0.00</span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section class="form-section">
+                <h2>Notes (Optional)</h2>
+                <div class="form-group">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Payment terms, thank you message, etc."></textarea>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section class="form-actions">
+                <button type="button" id="preview-btn" class="btn btn-secondary">Preview</button>
+                <button type="submit" class="btn btn-primary">Generate PDF</button>
+            </section>
+        </form>
+
+        <!-- Preview Section -->
+        <div id="preview-section" class="preview-section" style="display: none;">
+            <h2>Invoice Preview</h2>
+            <div id="invoice-preview" class="invoice-preview">
+                <!-- Preview content will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

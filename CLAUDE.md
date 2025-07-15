@@ -48,4 +48,45 @@ The application uses a `.env` file for configuration:
 
 ## Architecture Overview
 
-This will be a Flask-based web application for generating professional invoices with PDF export capabilities using ReportLab and WeasyPrint libraries.
+This is a complete Flask-based web application for generating professional invoices with PDF export capabilities.
+
+### Application Structure
+
+- **app.py**: Main Flask application with routes and PDF generation logic
+- **templates/index.html**: Single-page application interface
+- **static/css/style.css**: Professional responsive styling
+- **static/js/script.js**: Frontend functionality for dynamic invoice creation
+
+### Key Features Implemented
+
+- Dynamic item management with real-time calculations
+- Live invoice preview before PDF generation
+- Professional PDF generation using ReportLab
+- Responsive design for desktop and mobile
+- Form validation and error handling
+- Auto-generated invoice numbers and dates
+
+### PDF Generation
+
+The application uses ReportLab to create professional PDFs with:
+- Company and client information sections
+- Itemized billing table with calculations
+- Professional formatting and layout
+- Automatic total calculations
+
+### Frontend Functionality
+
+JavaScript handles:
+- Dynamic addition/removal of invoice items
+- Real-time total calculations
+- Form validation
+- Live preview generation
+- PDF download via AJAX
+
+### Development Workflow
+
+1. **Start Development Server**: `python app.py`
+2. **Access Application**: http://127.0.0.1:5000
+3. **Testing**: Fill out forms and generate test invoices
+4. **Styling Changes**: Edit `static/css/style.css`
+5. **Logic Changes**: Edit `app.py` for backend or `static/js/script.js` for frontend
